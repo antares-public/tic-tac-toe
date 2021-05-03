@@ -9,31 +9,43 @@ type AppProps = {
   player: boolean;
 };
 
+const WinnerWindow: React.FC = () => {
+  return (
+    <Modal>
+      <ModalInner>
+        <h1>Winner X</h1>
+        <button>back</button>
+      </ModalInner>
+    </Modal>
+  );
+};
+
 const App: React.FC<AppProps> = ({ onClick, board, player }) => {
   const winner = calculateWinner(board);
-  console.log(winner);
 
-  const classes = (value: string) => {
+  const checkImg = (value: string) => {
     switch (value) {
       case "x":
         return "cross";
       case "o":
         return "zero";
       default:
-        return "";
+        return "bg";
     }
   };
 
   return (
     <GameContainer>
+      {winner && <WinnerWindow />}
+
       <Game>
         {board.map((value, index) => (
           <Square
             onClick={onClick.bind(null, index)}
             key={index}
-            className={classes(value.toString())}
+            className={checkImg(value.toString())}
           >
-            <img src={`/${classes(value.toString())}.png`} />
+            <img src={`/${checkImg(value.toString())}.png`} alt="" />
           </Square>
         ))}
       </Game>
@@ -61,5 +73,18 @@ const Square = styled.button`
   margin: 5px;
   border-radius: 20px;
 `;
+
+const Modal = styled.div`
+  height: 100%;
+  width: 100%;
+
+  background: rgba(245, 245, 245, 0.5);
+
+  position: absolute;
+  display: grid;
+  place-items: center;
+`;
+
+const ModalInner = styled.div``;
 
 export default App;
