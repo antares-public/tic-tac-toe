@@ -1,31 +1,48 @@
 import React from "react";
 import styled from "styled-components";
-import {IBoard} from "../utils/interfaces"
-import {calculateWinner} from "../utils/winner"
+import { IBoard } from "../utils/interfaces";
+import { calculateWinner } from "../utils/winner";
 
 type AppProps = {
-  onClick: (index: number) => void
-  board: IBoard[]
-  player: boolean
-}
+  onClick: (index: number) => void;
+  board: IBoard[];
+  player: boolean;
+};
 
-const App: React.FC<AppProps> = ({onClick, board, player}) => {
-  const winner = calculateWinner(board)
-  console.log(winner)
+const App: React.FC<AppProps> = ({ onClick, board, player }) => {
+  const winner = calculateWinner(board);
+  console.log(winner);
 
   const classes = (value: string) => {
     if (value === "x") {
-      return "x"
+      return "x";
     } else if (value === "0") {
-      return "o"
+      return "o";
     }
-    return ""
-  }
+    return "";
+  };
+
+  const classess = (value: string) => {
+    if (value === "x") {
+      return "/cross.png";
+    } else if (value === "0") {
+      return "/zero.png";
+    }
+    return "";
+  };
 
   return (
     <GameContainer>
       <Game>
-        {board.map((value, index) => <Square onClick={onClick.bind(null, index)} key={index} className={classes(value.toString())}>{value}</Square>)}
+        {board.map((value, index) => (
+          <Square
+            onClick={onClick.bind(null, index)}
+            key={index}
+            className={classes(value.toString())}
+          >
+            <img src={classess(value.toString())} />
+          </Square>
+        ))}
       </Game>
     </GameContainer>
   );
@@ -46,8 +63,10 @@ const GameContainer = styled.div`
 `;
 
 const Square = styled.button`
-  background-color: #fff;
+  background-color: #78bec5;
+  border: none;
+  margin: 5px;
+  border-radius: 20px;
 `;
 
 export default App;
-
