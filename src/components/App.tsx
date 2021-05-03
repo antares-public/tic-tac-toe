@@ -1,42 +1,23 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import {IBoard} from "../utils/interfaces"
+import {calculateWinner} from "../utils/winner"
 
-interface IBoard {
-  [index: number]: string;
+type AppProps = {
+  onClick: (index: number) => void
+  board: IBoard[]
 }
 
-const App: React.FC = () => {
-  const [board, setBoard] = useState<IBoard[]>([
-    "", "", "", 
-    "", "", "",
-    "", "", ""
-  ]);
-  const [player, setPlayer] = useState(true)
-
-  const clickHandler = (index: number) => {
-    setBoard(prev => {
-      const newStateBoard = prev.map((e, i) => {
-        if (i === index) {
-          if (player) {
-            e = "x"
-          } else {
-            e = "0"
-          }
-          setPlayer(prev => prev = !prev)
-          console.log(player)
-        }
-
-        return e
-      })
-    
-      return newStateBoard
-    })
-  }
+const App: React.FC<AppProps> = ({onClick, board}) => {
+  const winner = calculateWinner(board)
+  console.log(winner)
 
   return (
-    <Game>
-      {board.map((value, index) => <Square onClick={clickHandler.bind(null, index)} key={index}>{value}</Square>)}
-    </Game>
+    <GameContainer>
+      <Game>
+        {board.map((value, index) => <Square onClick={onClick.bind(null, index)} key={index}>{value}</Square>)}
+      </Game>
+    </GameContainer>
   );
 };
 
@@ -47,6 +28,14 @@ const Game = styled.div`
   width: 500px;
   height: 500px;
 `;
+
+const GameContainer = styled.div`
+  display: grid;
+  place-items: center;
+  height: 100vh;
+`;
+
 const Square = styled.button``;
 
 export default App;
+
