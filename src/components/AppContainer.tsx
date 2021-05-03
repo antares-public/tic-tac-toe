@@ -20,7 +20,6 @@ const AppContainer: React.FC = () => {
             e = "0"
           }
           setPlayer(prev => prev = !prev)
-          console.log(player)
         }
 
         return e
@@ -30,7 +29,7 @@ const AppContainer: React.FC = () => {
     })
   }
 
-  return <App board={board} onClick={clickHandler}/>
+  return <App board={board} player={player} onClick={clickHandler}/>
 };
 
 

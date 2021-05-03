@@ -6,16 +6,26 @@ import {calculateWinner} from "../utils/winner"
 type AppProps = {
   onClick: (index: number) => void
   board: IBoard[]
+  player: boolean
 }
 
-const App: React.FC<AppProps> = ({onClick, board}) => {
+const App: React.FC<AppProps> = ({onClick, board, player}) => {
   const winner = calculateWinner(board)
   console.log(winner)
+
+  const classes = (value: string) => {
+    if (value === "x") {
+      return "x"
+    } else if (value === "0") {
+      return "o"
+    }
+    return ""
+  }
 
   return (
     <GameContainer>
       <Game>
-        {board.map((value, index) => <Square onClick={onClick.bind(null, index)} key={index}>{value}</Square>)}
+        {board.map((value, index) => <Square onClick={onClick.bind(null, index)} key={index} className={classes(value.toString())}>{value}</Square>)}
       </Game>
     </GameContainer>
   );
@@ -35,7 +45,9 @@ const GameContainer = styled.div`
   height: 100vh;
 `;
 
-const Square = styled.button``;
+const Square = styled.button`
+  background-color: #fff;
+`;
 
 export default App;
 
