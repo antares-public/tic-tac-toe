@@ -8,11 +8,11 @@ code {
     monospace;
 }
 
-.x {
+.cross {
   background-color: #dc685a !important;
 }
 
-.o {
+.zero {
   background-color: #ecaf4f !important;
 }
 

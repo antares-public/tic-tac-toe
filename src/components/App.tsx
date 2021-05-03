@@ -14,21 +14,14 @@ const App: React.FC<AppProps> = ({ onClick, board, player }) => {
   console.log(winner);
 
   const classes = (value: string) => {
-    if (value === "x") {
-      return "x";
-    } else if (value === "0") {
-      return "o";
+    switch (value) {
+      case "x":
+        return "cross";
+      case "o":
+        return "zero";
+      default:
+        return "";
     }
-    return "";
-  };
-
-  const classess = (value: string) => {
-    if (value === "x") {
-      return "/cross.png";
-    } else if (value === "0") {
-      return "/zero.png";
-    }
-    return "";
   };
 
   return (
@@ -40,7 +33,7 @@ const App: React.FC<AppProps> = ({ onClick, board, player }) => {
             key={index}
             className={classes(value.toString())}
           >
-            <img src={classess(value.toString())} />
+            <img src={`/${classes(value.toString())}.png`} />
           </Square>
         ))}
       </Game>

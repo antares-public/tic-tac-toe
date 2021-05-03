@@ -1,37 +1,41 @@
 import React, { useState } from "react";
-import {IBoard} from "../utils/interfaces"
-import App from "./App"
+import { IBoard } from "../utils/interfaces";
+import App from "./App";
 
 const AppContainer: React.FC = () => {
   const [board, setBoard] = useState<IBoard[]>([
-    "", "", "", 
-    "", "", "",
-    "", "", ""
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
   ]);
-  const [player, setPlayer] = useState(true)
+  const [player, setPlayer] = useState(true);
 
   const clickHandler = (index: number) => {
-    setBoard(prev => {
+    setBoard((prev) => {
       const newStateBoard = prev.map((e, i) => {
         if (i === index) {
           if (player) {
-            e = "x"
+            e = "x";
           } else {
-            e = "0"
+            e = "o";
           }
-          setPlayer(prev => prev = !prev)
+          setPlayer((prev) => (prev = !prev));
         }
 
-        return e
-      })
-    
-      return newStateBoard
-    })
-  }
+        return e;
+      });
 
-  return <App board={board} player={player} onClick={clickHandler}/>
+      return newStateBoard;
+    });
+  };
+
+  return <App board={board} player={player} onClick={clickHandler} />;
 };
 
-
 export default AppContainer;
-
