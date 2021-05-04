@@ -35,7 +35,7 @@ const AppContainer: React.FC = () => {
     });
   };
 
-  return <App board={board} player={player} onClick={clickHandler} />;
+  return <App board={board} setBoard={setBoard} onClick={clickHandler} />;
 };
 
 export default AppContainer;
