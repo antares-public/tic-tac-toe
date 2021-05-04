@@ -17,7 +17,9 @@ const AppContainer: React.FC = () => {
   const [player, setPlayer] = useState<boolean | null>(true);
 
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("board") || "[]") as IBoard[];
+    const saved = JSON.parse(
+      localStorage.getItem("board") || '["","","","","","","","","",]'
+    ) as IBoard[];
     const player = !!localStorage.getItem("player");
 
     setBoard(saved);
