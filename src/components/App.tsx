@@ -3,6 +3,10 @@ import styled from "styled-components";
 import { IBoard } from "../utils/interfaces";
 import { calculateWinner } from "../utils/winner";
 
+import bg from "./../assets/bg.png"
+import cross from "./../assets/cross.png"
+import zero from "./../assets/zero.png"
+
 type AppProps = {
   onClick: (index: number) => void;
   board: IBoard[];
@@ -39,11 +43,11 @@ const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
   const checkImg = (value: IBoard) => {
     switch (value) {
       case "x":
-        return "cross";
+        return cross;
       case "o":
-        return "zero";
+        return zero;
       default:
-        return "bg";
+        return bg;
     }
   };
 
@@ -62,20 +66,14 @@ const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
           <Square
             onClick={onClick.bind(null, index)}
             key={index}
-            className={checkImg(value)}
+            src={checkImg(value)} 
           >
-            <Image src={`/${checkImg(value)}.png`} alt="" />
           </Square>
         ))}
       </Game>
     </GameContainer>
   );
 };
-
-const Image = styled.img`
-  width: 100px;
-  height: 100px;
-`;
 
 const Game = styled.div`
   display: grid;
@@ -91,8 +89,7 @@ const GameContainer = styled.div`
   height: 100vh;
 `;
 
-const Square = styled.button`
-  background-color: #78bec5;
+const Square = styled.img`
   border: none;
   margin: 5px;
   border-radius: 20px;
