@@ -32,11 +32,13 @@ const WinnerWindow: React.FC<{
 const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
   const [winner, setWinner] = useState<IBoard | null>(null);
 
+
+
   useEffect(() => {
     setWinner(calculateWinner(board));
   }, [board]);
 
-  const checkImg = (value: string) => {
+  const checkImg = (value: IBoard) => {
     switch (value) {
       case "x":
         return "cross";
@@ -62,9 +64,9 @@ const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
           <Square
             onClick={onClick.bind(null, index)}
             key={index}
-            className={checkImg(value.toString())}
+            className={checkImg(value)}
           >
-            <Image src={`/${checkImg(value.toString())}.png`} alt="" />
+            <Image src={`/${checkImg(value)}.png`} alt="" />
           </Square>
         ))}
       </Game>
