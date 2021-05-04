@@ -27,7 +27,7 @@ const AppContainer: React.FC = () => {
   useEffect(() => {
     localStorage.setItem("board", JSON.stringify(board));
     localStorage.setItem("player", JSON.stringify(player));
-  }, [board]);
+  }, [board, player]);
 
   const clickHandler = (index: number) => {
     setBoard((prev) => {

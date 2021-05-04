@@ -32,8 +32,6 @@ const WinnerWindow: React.FC<{
 const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
   const [winner, setWinner] = useState<IBoard | null>(null);
 
-
-
   useEffect(() => {
     setWinner(calculateWinner(board));
   }, [board]);
