@@ -15,7 +15,11 @@ export function calculateWinner(squares: IBoard[]) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
       return squares[a];
-    }
+    } 
+  }
+  const drawnGame = squares.filter(squares => squares === "")
+  if (drawnGame.length === 0) {
+    return "Drawn"
   }
   return null;
 }

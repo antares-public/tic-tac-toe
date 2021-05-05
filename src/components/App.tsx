@@ -26,7 +26,7 @@ const WinnerWindow: React.FC<{
   return (
     <Modal>
       <ModalInner>
-        <h1>Winner {winner}</h1>
+        {winner === "Drawn" ? <h1>{winner}</h1> : <h1>Winner {winner}</h1>}
         <button onClick={() => gameAgain()}>Game Again</button>
       </ModalInner>
     </Modal>
@@ -112,10 +112,11 @@ const ModalInner = styled.div`
 
   text-align: center;
   padding: 20px 80px;
-  border-radius: 2px;
+  border-radius: 5px;
 
   > h1 {
     text-transform: capitalize;
+    margin: 0 0 5px 0;
   }
   > button {
     border: none;
