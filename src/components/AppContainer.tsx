@@ -35,6 +35,7 @@ const AppContainer: React.FC = () => {
     setBoard((prev) => {
       const newStateBoard = prev.map((e, i) => {
         if (i === index) {
+          if (e !== "") return e
           if (player) {
             e = "x";
           } else {
