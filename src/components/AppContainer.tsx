@@ -18,7 +18,7 @@ const AppContainer: React.FC = () => {
 
   useEffect(() => {
     const saved = JSON.parse(
-      localStorage.getItem("board") || '["","","","","","","","","",]'
+      localStorage.getItem("board") || '["","","","","","","","",""]'
     ) as IBoard[];
     const player = !!localStorage.getItem("player");
 
@@ -35,7 +35,7 @@ const AppContainer: React.FC = () => {
     setBoard((prev) => {
       const newStateBoard = prev.map((e, i) => {
         if (i === index) {
-          if (e !== "") return e
+          if (e !== "") return e;
           if (player) {
             e = "x";
           } else {

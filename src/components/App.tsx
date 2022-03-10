@@ -3,9 +3,9 @@ import styled from "styled-components";
 import { IBoard } from "../utils/interfaces";
 import { calculateWinner } from "../utils/winner";
 
-import bg from "./../assets/bg.png"
-import cross from "./../assets/cross.png"
-import zero from "./../assets/zero.png"
+import bg from "../assets/bg.png";
+import cross from "../assets/cross.png";
+import zero from "../assets/zero.png";
 
 type AppProps = {
   onClick: (index: number) => void;
@@ -66,9 +66,8 @@ const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
           <Square
             onClick={onClick.bind(null, index)}
             key={index}
-            src={checkImg(value)} 
-          >
-          </Square>
+            src={checkImg(value)}
+          ></Square>
         ))}
       </Game>
     </GameContainer>
@@ -77,22 +76,22 @@ const App: React.FC<AppProps> = ({ onClick, board, setBoard }) => {
 
 const Game = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 100px);
 
-  width: 500px;
-  height: 500px;
+  height: 315px;
 `;
 
 const GameContainer = styled.div`
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
   height: 100vh;
+  align-items: center;
 `;
 
 const Square = styled.img`
   border: none;
-  margin: 5px;
   border-radius: 20px;
+  width: 95px;
 `;
 
 const Modal = styled.div`
